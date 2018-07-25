@@ -938,7 +938,7 @@ public class OkHttpClient implements Cloneable, Call.Factory, WebSocket.Factory 
       return System.currentTimeMillis();
     }
   });
-  static setOkHttpTimeFactory(TimeFactory timeFactory) {
+  public static setOkHttpTimeFactory(TimeFactory timeFactory) {
     synchronized (sTimeFactory) {
       if(timeFactory == null) {
         sTimeFactory.set(new TimeFactory() {
