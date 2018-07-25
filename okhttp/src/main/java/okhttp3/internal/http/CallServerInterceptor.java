@@ -44,7 +44,7 @@ public final class CallServerInterceptor implements Interceptor {
     RealConnection connection = (RealConnection) realChain.connection();
     Request request = realChain.request();
 
-    long sentRequestMillis = System.currentTimeMillis();
+    long sentRequestMillis = OkHttpClient.currentTime();
 
     realChain.eventListener().requestHeadersStart(realChain.call());
     httpCodec.writeRequestHeaders(request);
@@ -92,7 +92,7 @@ public final class CallServerInterceptor implements Interceptor {
         .request(request)
         .handshake(streamAllocation.connection().handshake())
         .sentRequestAtMillis(sentRequestMillis)
-        .receivedResponseAtMillis(System.currentTimeMillis())
+        .receivedResponseAtMillis(OkHttpClient.currentTime())
         .build();
 
     int code = response.code();
@@ -105,7 +105,7 @@ public final class CallServerInterceptor implements Interceptor {
               .request(request)
               .handshake(streamAllocation.connection().handshake())
               .sentRequestAtMillis(sentRequestMillis)
-              .receivedResponseAtMillis(System.currentTimeMillis())
+              .receivedResponseAtMillis(OkHttpClient.currentTime())
               .build();
 
       code = response.code();

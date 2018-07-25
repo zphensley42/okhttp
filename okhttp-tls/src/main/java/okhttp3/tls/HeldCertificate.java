@@ -237,7 +237,7 @@ public final class HeldCertificate {
      * The precision of this field is seconds; further precision will be truncated.
      */
     public Builder duration(long duration, TimeUnit unit) {
-      long now = System.currentTimeMillis();
+      long now = OkHttpClient.currentTime();
       return validityInterval(now, now + unit.toMillis(duration));
     }
 
@@ -367,7 +367,7 @@ public final class HeldCertificate {
       }
 
       // Generate & sign the certificate.
-      long notBefore = this.notBefore != -1L ? this.notBefore : System.currentTimeMillis();
+      long notBefore = this.notBefore != -1L ? this.notBefore : OkHttpClient.currentTime();
       long notAfter = this.notAfter != -1L ? this.notAfter : notBefore + DEFAULT_DURATION_MILLIS;
       BigInteger serialNumber = this.serialNumber != null ? this.serialNumber : BigInteger.ONE;
       X509V3CertificateGenerator generator = new X509V3CertificateGenerator();

@@ -216,7 +216,7 @@ public final class Cookie {
    * null if {@code setCookie} is not a well-formed cookie.
    */
   public static @Nullable Cookie parse(HttpUrl url, String setCookie) {
-    return parse(System.currentTimeMillis(), url, setCookie);
+    return parse(OkHttpClient.currentTime(), url, setCookie);
   }
 
   static @Nullable Cookie parse(long currentTimeMillis, HttpUrl url, String setCookie) {
