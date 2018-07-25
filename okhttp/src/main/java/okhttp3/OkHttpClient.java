@@ -35,6 +35,7 @@ import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
+import java.util.concurrent.atomic.AtomicReference;
 import okhttp3.internal.Internal;
 import okhttp3.internal.Util;
 import okhttp3.internal.cache.InternalCache;
@@ -1063,7 +1064,7 @@ public class OkHttpClient implements Cloneable, Call.Factory, WebSocket.Factory 
       sTimeFactory.set(timeFactory);
     }
   }
-  static long currentTime() {
+  public static long currentTime() {
     synchronized (sTimeFactory) {
       return sTimeFactory.get().currentTime();
     }

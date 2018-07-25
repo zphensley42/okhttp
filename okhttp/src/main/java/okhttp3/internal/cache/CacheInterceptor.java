@@ -35,6 +35,7 @@ import okio.Okio;
 import okio.Sink;
 import okio.Source;
 import okio.Timeout;
+import okhttp3.OkHttpClient;
 
 import static java.net.HttpURLConnection.HTTP_NOT_MODIFIED;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
