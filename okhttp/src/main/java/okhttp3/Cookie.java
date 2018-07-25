@@ -35,6 +35,7 @@ import static okhttp3.internal.Util.delimiterOffset;
 import static okhttp3.internal.Util.indexOfControlOrNonAscii;
 import static okhttp3.internal.Util.trimSubstring;
 import static okhttp3.internal.Util.verifyAsIpAddress;
+import okhttp3.OkHttpClient;
 
 /**
  * An <a href="http://tools.ietf.org/html/rfc6265">RFC 6265</a> Cookie.

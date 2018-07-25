@@ -28,6 +28,7 @@ import okio.BufferedSink;
 import okio.ForwardingSink;
 import okio.Okio;
 import okio.Sink;
+import okhttp3.OkHttpClient;
 
 /** This is the last interceptor in the chain. It makes a network call to the server. */
 public final class CallServerInterceptor implements Interceptor {
