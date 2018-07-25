@@ -54,7 +54,7 @@ public final class CacheInterceptor implements Interceptor {
         ? cache.get(chain.request())
         : null;
 
-    long now = System.currentTimeMillis();
+    long now = OkHttpClient.currentTime();
 
     CacheStrategy strategy = new CacheStrategy.Factory(now, chain.request(), cacheCandidate).get();
     Request networkRequest = strategy.networkRequest;
@@ -77,7 +77,7 @@ public final class CacheInterceptor implements Interceptor {
           .message("Unsatisfiable Request (only-if-cached)")
           .body(Util.EMPTY_RESPONSE)
           .sentRequestAtMillis(-1L)
-          .receivedResponseAtMillis(System.currentTimeMillis())
+          .receivedResponseAtMillis(OkHttpClient.currentTime())
           .build();
     }
 

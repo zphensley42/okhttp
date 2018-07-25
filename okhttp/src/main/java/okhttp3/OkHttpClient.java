@@ -928,4 +928,32 @@ public class OkHttpClient implements Cloneable, Call.Factory, WebSocket.Factory 
       return new OkHttpClient(this);
     }
   }
+
+  public interface TimeFactory {
+    long currentTime();
+  }
+  static AtomicReference<TimeFactory> sTimeFactory = new AtomicReference<TimeFactory>(new TimeFactory() {
+    @java.lang.Override
+    public long currentTime() {
+      return System.currentTimeMillis();
+    }
+  });
+  static setOkHttpTimeFactory(TimeFactory timeFactory) {
+    synchronized (sTimeFactory) {
+      if(timeFactory == null) {
+        sTimeFactory.set(new TimeFactory() {
+          @java.lang.Override
+          public long currentTime() {
+            return System.currentTimeMillis();
+          }
+        });
+      }
+      sTimeFactory.set(timeFactory);
+    }
+  }
+  static long currentTime() {
+    synchronized (sTimeFactory) {
+      return sTimeFactory.get().currentTime();
+    }
+  }
 }
