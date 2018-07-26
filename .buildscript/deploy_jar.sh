@@ -1,5 +1,16 @@
 #!/usr/bin/env bash
 
+# Build
+pushd ./ || exit
+
+cd ../
+mvn clean
+mvn package -DskipTests
+
+popd || exit
+
+
+# Install
 pushd ./ || exit
 
 cp ../benchmarks/target/*.jar ../deploy_jar/
